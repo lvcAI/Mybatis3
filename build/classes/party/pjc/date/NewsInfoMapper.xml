@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="news" >
+  <resultMap id="BaseResultMap" type="party.pjc.model.NewsInfo" >
+    <id column="nid" property="nid" jdbcType="INTEGER" />
+    <result column="nauthor" property="nauthor" jdbcType="VARCHAR" />
+    <result column="ncontent" property="ncontent" jdbcType="VARCHAR" />
+    <result column="ncreatedate" property="ncreatedate" jdbcType="VARCHAR" />
+    <result column="nmodifydate" property="nmodifydate" jdbcType="VARCHAR" />
+    <result column="npicpath" property="npicpath" jdbcType="VARCHAR" />
+    <result column="nsummary" property="nsummary" jdbcType="VARCHAR" />
+    <result column="ntid" property="ntid" jdbcType="INTEGER" />
+    <result column="ntitle" property="ntitle" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    nid, nauthor, ncontent, ncreatedate, nmodifydate, npicpath, nsummary, ntid, ntitle
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from newsinfo
+    where nid = #{nid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from newsinfo
+    where nid = #{nid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="party.pjc.model.NewsInfo" >
+    insert into newsinfo (nid, nauthor, ncontent, 
+      ncreatedate, nmodifydate, npicpath, 
+      nsummary, ntid, ntitle
+      )
+    values (#{nid,jdbcType=INTEGER}, #{nauthor,jdbcType=VARCHAR}, #{ncontent,jdbcType=VARCHAR}, 
+      #{ncreatedate,jdbcType=VARCHAR}, #{nmodifydate,jdbcType=VARCHAR}, #{npicpath,jdbcType=VARCHAR}, 
+      #{nsummary,jdbcType=VARCHAR}, #{ntid,jdbcType=INTEGER}, #{ntitle,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="party.pjc.model.NewsInfo" >
+    insert into newsinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nid != null" >
+        nid,
+      </if>
+      <if test="nauthor != null" >
+        nauthor,
+      </if>
+      <if test="ncontent != null" >
+        ncontent,
+      </if>
+      <if test="ncreatedate != null" >
+        ncreatedate,
+      </if>
+      <if test="nmodifydate != null" >
+        nmodifydate,
+      </if>
+      <if test="npicpath != null" >
+        npicpath,
+      </if>
+      <if test="nsummary != null" >
+        nsummary,
+      </if>
+      <if test="ntid != null" >
+        ntid,
+      </if>
+      <if test="ntitle != null" >
+        ntitle,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nid != null" >
+        #{nid,jdbcType=INTEGER},
+      </if>
+      <if test="nauthor != null" >
+        #{nauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="ncontent != null" >
+        #{ncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="ncreatedate != null" >
+        #{ncreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="nmodifydate != null" >
+        #{nmodifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="npicpath != null" >
+        #{npicpath,jdbcType=VARCHAR},
+      </if>
+      <if test="nsummary != null" >
+        #{nsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="ntid != null" >
+        #{ntid,jdbcType=INTEGER},
+      </if>
+      <if test="ntitle != null" >
+        #{ntitle,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="party.pjc.model.NewsInfo" >
+    update newsinfo
+    <set >
+      <if test="nauthor != null" >
+        nauthor = #{nauthor,jdbcType=VARCHAR},
+      </if>
+      <if test="ncontent != null" >
+        ncontent = #{ncontent,jdbcType=VARCHAR},
+      </if>
+      <if test="ncreatedate != null" >
+        ncreatedate = #{ncreatedate,jdbcType=VARCHAR},
+      </if>
+      <if test="nmodifydate != null" >
+        nmodifydate = #{nmodifydate,jdbcType=VARCHAR},
+      </if>
+      <if test="npicpath != null" >
+        npicpath = #{npicpath,jdbcType=VARCHAR},
+      </if>
+      <if test="nsummary != null" >
+        nsummary = #{nsummary,jdbcType=VARCHAR},
+      </if>
+      <if test="ntid != null" >
+        ntid = #{ntid,jdbcType=INTEGER},
+      </if>
+      <if test="ntitle != null" >
+        ntitle = #{ntitle,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="party.pjc.model.NewsInfo" >
+    update newsinfo
+    set nauthor = #{nauthor,jdbcType=VARCHAR},
+      ncontent = #{ncontent,jdbcType=VARCHAR},
+      ncreatedate = #{ncreatedate,jdbcType=VARCHAR},
+      nmodifydate = #{nmodifydate,jdbcType=VARCHAR},
+      npicpath = #{npicpath,jdbcType=VARCHAR},
+      nsummary = #{nsummary,jdbcType=VARCHAR},
+      ntid = #{ntid,jdbcType=INTEGER},
+      ntitle = #{ntitle,jdbcType=VARCHAR}
+    where nid = #{nid,jdbcType=INTEGER}
+  </update>
+</mapper>
